@@ -1,0 +1,52 @@
+body{
+    background-image: url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80');  
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover
+}            
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+table{
+  width: 35%;
+}
+th, td {
+  padding: 15px;
+  text-align: left;
+  color: rgb(244,243,247);
+}
+td, th {
+    padding: 15px;
+}
+a{
+  color: rgba(255,255,255);
+}
+#mainNavbar {
+  font-size: 1.5rem;
+  font-weight: 100;
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255,255,255);
+}
+p{
+  text-align: right;
+}
+#example2 {
+  caption-side: top;
+}
+caption {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    color: rgba(255,255,255);
+    text-align: left;
+    caption-side: top;
+}
+@media screen and (max-width: 767px){}
+.table-responsive {
+    width: 100%;
+    margin-bottom: 15px;
+    overflow-y: hidden;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    border: 1px solid #ddd0;
+}

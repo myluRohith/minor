@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+        <meta http-equiv="refresh" content="15">
+        <title>Maps</title>
+        <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js'></script>
+        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css' rel='stylesheet' />
+        <script src="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link href="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css" rel="stylesheet" />
+        <style>
+            body { margin: 0; padding: 0; }
+            #map { position: absolute; top: 0; bottom: 0; width: 50%; }
+            .marker {
+                background-image: url('data:image/png;base64,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');
+                background-size: cover;
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+            .mapboxgl-popup {
+                max-width: 200px;
+            }
+            .mapboxgl-popup-content {
+            text-align: center;
+            font-family: 'Open Sans', sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <div id='map' style='width: 100%; height: 100%;'></div>
+        <form method="post" action="">
+            <input type="hidden" id="lat" name="latti" value="<%=  pumm.lat  %>">
+            <input type="hidden" id="lon" name="longi" value="<%=  pumm.lon  %>">
+            <input type="hidden" id="disc" name="discp" value="<%=  pumm.dis  %>">
+        </form>
+        <script>
+            var lon;
+            var lat;
+            var position;
+            var alat;
+            var alon ;
+            var a;
+            var b;
+            var dis;
+            var markerHeight = 15, markerRadius = 10, linearOffset = 25;
+            var popupOffsets = {
+            'top': [0, 0],
+            'top-left': [0,0],
+            'top-right': [0,0],
+            'bottom': [0, -markerHeight],
+            'bottom-left': [linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
+            'bottom-right': [-linearOffset, (markerHeight - markerRadius + linearOffset) * -1],
+            'left': [markerRadius, (markerHeight - markerRadius) * -1],
+            'right': [-markerRadius, (markerHeight - markerRadius) * -1]
+            };
+            a=document.getElementById("lat").value;
+            b=document.getElementById("lon").value;
+            dis=document.getElementById("disc").value;
+            alat = (parseInt(a))/1000000;    
+            alon = (parseInt(b))/1000000;
+            console.log(a,b);
+            console.log(alat,alon);
+            console.log(dis);
+            mapboxgl.accessToken = 'pk.eyJ1IjoiYWxhZ2F3YWRpIiwiYSI6ImNrYTN6cHV4cjA4ZzczZm9hemhhdHRxanoifQ.8qfmft9mDGxnr8oksr2k-A';
+            //mapboxgl.setRTLTextPlugin('https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js');
+            var map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/streets-v11',
+                center: [b, a],//[lng,lat]
+                zoom: 13
+            });
+            var geolocate = new mapboxgl.GeolocateControl();
+            map.addControl(geolocate);
+            geolocate.on('geolocate', function(e) {
+                lon = e.coords.longitude;
+                lat = e.coords.latitude
+                position = [lon, lat];
+                var marker = new mapboxgl.Marker()
+                    .setLngLat([lon, lat])
+                    .addTo(map);        
+            });        
+            var geojson = {
+                "features": [
+                   /*  {
+                        "type": 'Feature',
+                        "geometry": {
+                            "type": 'Point',
+                            "coordinates": [74.497673, 15.849695]
+                    },
+                    "properties": {
+                        "title": 'bus1',
+                        "description": 'Belagavi'
+                    }
+                },
+                {
+                    "type": 'Feature',
+                    "geometry": {
+                        "type": 'Point',
+                        "coordinates": [75.643600, 15.436700]
+                    },
+                    "properties": {
+                        "title": 'bus2',
+                        "description": 'Gadag'
+                    }
+                },
+                {
+                    "type": 'Feature',
+                    "geometry": {
+                        "type": 'Point',
+                        "coordinates": [75.655724, 16.172535]
+                    },
+                    "properties": {
+                        "title": 'bus3',
+                        "description": 'Bagalkot'
+                    }
+                }, */
+               {
+                    "type": 'Feature',
+                    "geometry": {
+                        "type": 'Point',
+                        "coordinates": [b, a]
+                    },
+                    "properties": {
+                        "title": 'my location',
+                        "description": dis
+                    }
+                },
+               /*  {
+                    "type": 'Feature',
+                    "geometry": {
+                        "type": 'Point',
+                        "coordinates": [75.147598, 15.351400]
+                    },
+                    "properties": {
+                        "title": 'bus4',
+                        "description": 'Hubballi'
+                    }
+                } */], 
+                "type": "FeatureCollection"
+            };
+            // add markers to map
+            geojson.features.forEach(function(marker) {
+                // create a HTML element for each feature
+                var el = document.createElement('div');
+                el.className = 'marker';
+                // make a marker for each feature and add to the map
+                new mapboxgl.Marker(el)
+                .setLngLat(marker.geometry.coordinates)
+                //.setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+                //.setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+                .addTo(map);
+                var popup = new mapboxgl.Popup({offset: popupOffsets, className: 'my-class'})
+                .setLngLat([b, a])
+                .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>')
+                .setMaxWidth("300px")
+                .addTo(map);
+            });
+            map.on('load', function() {
+                // data from opendata.cityofboise.org/
+                map.addSource('off-leash-areas', {
+                    'type': 'geojson',
+                    'data': 'https://docs.mapbox.com/mapbox-gl-js/assets/boise.geojson'
+                });
+                map.addLayer({
+                    'id': 'off-leash-areas',
+                    'type': 'symbol',
+                    'source': 'off-leash-areas',
+                    'layout': {
+                    'icon-image': 'dog-park-11',
+                    'text-field': [
+                    'format',
+                    ['upcase', ['get', 'FacilityName']],
+                    { 'font-scale': 0.8 },
+                    '\n',
+                    {},
+                    ['downcase', ['get', 'Comments']],
+                    { 'font-scale': 0.6 }
+                    ],
+                    'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
+                    'text-offset': [0, 0.6],
+                    'text-anchor': 'top'
+                    }
+                });
+                map.setLayoutProperty('country-label', 'text-field', [
+                    'format',
+                    ['get', 'name_en'],
+                    { 'font-scale': 1.2 },
+                    '\n',
+                    {},
+                    ['get', 'name'],
+                    {
+                    'font-scale': 0.8,
+                    'text-font': [
+                    'literal',
+                    ['DIN Offc Pro Italic', 'Arial Unicode MS Regular']
+                    ]
+                    }
+                ]);
+            });
+        </script>
+    </body>
+</html>
