@@ -22,7 +22,8 @@
                 cursor: pointer;
             }
             .mapboxgl-popup {
-                max-width: 200px;
+                max-width: 400px;
+                font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
             }
             .mapboxgl-popup-content {
             text-align: center;
@@ -150,14 +151,14 @@
                 // make a marker for each feature and add to the map
                 new mapboxgl.Marker(el)
                 .setLngLat(marker.geometry.coordinates)
-                //.setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-                //.setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+                .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+                .setHTML('<h3>' + marker.properties.description + '</h3>'))
                 .addTo(map);
-                var popup = new mapboxgl.Popup({offset: popupOffsets, className: 'my-class'})
+               /*  var popup = new mapboxgl.Popup({offset: popupOffsets, className: 'my-class'})
                 .setLngLat([b, a])
                 .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>')
                 .setMaxWidth("300px")
-                .addTo(map);
+                .addTo(map); */
             });
             map.on('load', function() {
                 // data from opendata.cityofboise.org/
